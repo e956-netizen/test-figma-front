@@ -1,0 +1,9 @@
+.git
+.gitignore
+README.md
+.env.example
+.eslintrc.json
+Dockerfile
+Dockerfile.dev
+docker-compose.yml
+.dockerignore
