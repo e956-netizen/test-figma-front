@@ -1,6 +1,7 @@
 'use client';
 
 import { OnboardingScreen } from '@/components/OnboardingScreen';
+import { SignUpForm } from '@/components/SignUpForm';
 import { useState } from 'react';
 
 export default function Home() {
@@ -18,6 +19,10 @@ export default function Home() {
     console.log('Sign in clicked');
     // Aquí puedes agregar la lógica para ir a la página de login
   };
+
+  if (showSignUp) {
+    return <SignUpForm onBack={() => setShowSignUp(false)} />;
+  }
 
   return (
     <OnboardingScreen onSignUp={handleSignUp} onSignIn={handleSignIn} />
