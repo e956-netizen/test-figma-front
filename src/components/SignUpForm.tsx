@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 type SignUpFormProps = {
-  onBack: () => void;
+  onBack?: () => void;
 };
 
 export function SignUpForm({ onBack }: SignUpFormProps) {
@@ -86,12 +86,14 @@ export function SignUpForm({ onBack }: SignUpFormProps) {
           </button>
         </form>
 
-        <button
-          onClick={onBack}
-          className="w-full max-w-[500px] mx-auto py-2 text-[#1480DB] font-normal text-sm transition-all duration-200 hover:text-[#0f6fbe] hover:underline mt-4"
-        >
-          Volver
-        </button>
+        {onBack && (
+          <button
+            onClick={onBack}
+            className="w-full max-w-[500px] mx-auto py-2 text-[#1480DB] font-normal text-sm transition-all duration-200 hover:text-[#0f6fbe] hover:underline mt-4"
+          >
+            Volver
+          </button>
+        )}
       </section>
     </main>
   );

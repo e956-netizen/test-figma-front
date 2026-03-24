@@ -1,14 +1,17 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { CarouselDots } from './CarouselDots';
 
 type OnboardingScreenProps = {
+  signUpHref?: string;
   onSignUp?: () => void;
   onSignIn?: () => void;
 };
 
-export function OnboardingScreen({ onSignUp, onSignIn }: OnboardingScreenProps) {
+export function OnboardingScreen({ signUpHref, onSignUp, onSignIn }: OnboardingScreenProps) {
+  const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const totalSlides = 3;
@@ -78,12 +81,21 @@ export function OnboardingScreen({ onSignUp, onSignIn }: OnboardingScreenProps) 
         </div>
 
         <div className="flex flex-col gap-3 items-center">
-          <button
-            onClick={onSignUp}
-            className="w-full max-w-[500px] py-3 rounded-full bg-[#1480DB] text-[#ffffff] font-semibold text-base transition-all duration-200 hover:bg-[#0f6fbe] hover:shadow-lg"
-          >
-            ¡Crea tu cuenta!
-          </button>
+          {signUpHref ? (
+            <button
+              onClick={() => router.push(signUpHref)}
+              className="w-full max-w-[500px] py-3 rounded-full bg-[#1480DB] text-[#ffffff] font-semibold text-base transition-all duration-200 hover:bg-[#0f6fbe] hover:shadow-lg"
+            >
+              ¡Crea tu cuenta!
+            </button>
+          ) : (
+            <button
+              onClick={onSignUp}
+              className="w-full max-w-[500px] py-3 rounded-full bg-[#1480DB] text-[#ffffff] font-semibold text-base transition-all duration-200 hover:bg-[#0f6fbe] hover:shadow-lg"
+            >
+              ¡Crea tu cuenta!
+            </button>
+          )}
           <button
             onClick={onSignIn}
             className="w-full max-w-[500px] py-3 rounded-full border-2 border-[#1480DB] text-[#1480DB] font-semibold text-base bg-white transition-all duration-200 hover:bg-[#eaf4ff] hover:border-[#0f6fbe] hover:text-[#0f6fbe]"
